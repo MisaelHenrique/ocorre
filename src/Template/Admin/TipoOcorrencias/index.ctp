@@ -1,6 +1,6 @@
 <div class="d-flex">
     <div class="mr-auto p-2">
-        <h2 class="display-4 titulo">Tipos de Ocorrencias</h2>
+        <h2 class="display-4 titulo">Tipo de Ocorrencias</h2>
     </div>
     <div class="p-2">
         <?= $this->Html->link(_('Cadastrar'), ['controller' => 'TipoOcorrencias', 'action' => 'add'], ['class'=>'btn btn-outline-success btn-sm']);?>
@@ -14,6 +14,7 @@
             <tr>
                 <th>ID</th>
                 <th>Tipo de Ocorrencia</th>
+                <th>Gravidade</th>
                 <th class="d-none d-sm-table-cell">Descrição</th>
                 <th class="text-center">Ações</th>
             </tr>
@@ -21,19 +22,19 @@
         <tbody>
             <?php foreach ($tipoOcorrencias as $tipoOcorrencia): ?>
             <tr>
-            <td><?= $this->Number->format($tipoOcorrencia->id) ?></td>
+                <td><?= $this->Number->format($tipoOcorrencia->id) ?></td>
                 <td><?= h($tipoOcorrencia->tipo_ocorrencia) ?></td>
+                <td><?= $tipoOcorrencia->has('gravidade') ? $this->Html->link($tipoOcorrencia->gravidade->gravidade, ['controller' => 'Gravidades', 'action' => 'view', $tipoOcorrencia->gravidade->id]) : '' ?></td>
                 <td class="d-none d-sm-table-cell">
                     <?= h($tipoOcorrencia->descricao) ?>
                 </td>
-                
                 <td>
                     <span class="d-none d-md-block">
-                        <?= $this->Html->link(__('Visualizar'), ['controller' => 'TipoOcorrencias', 'action' => 'view', $tipoOcorrencia->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
+                    <?= $this->Html->link(__('Visualizar'), ['controller' => 'TipoOcorrencias', 'action' => 'view', $tipoOcorrencia->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'TipoOcorrencias', 'action' => 'edit', $tipoOcorrencia->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'TipoOcorrencias', 'action' => 'delete', $tipoOcorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o usuário # {0}?', $tipoOcorrencia->id)]) ?>
+                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'TipoOcorrencias', 'action' => 'delete', $tipoOcorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o tipo de ocorrencia # {0}?', $tipoOcorrencia->id)]) ?>
                     </span>
 
                     <div class="dropdown d-block d-md-none">
@@ -42,11 +43,11 @@
                             Ações
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                            <?= $this->Html->link(__('Visualizar'), ['controller' => 'TipoOcorrencias', 'action' => 'view', $tipoOcorrencia->id], ['class' => 'dropdown-item']) ?>
+                        <?= $this->Html->link(__('Visualizar'), ['controller' => 'TipoOcorrencias', 'action' => 'view', $tipoOcorrencia->id], ['class' => 'dropdown-item']) ?>
 
                             <?= $this->Html->link(__('Editar'), ['controller' => 'TipoOcorrencias', 'action' => 'edit', $tipoOcorrencia->id], ['class' => 'dropdown-item']) ?>
 
-                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'TipoOcorrencias', 'action' => 'delete', $tipoOcorrencia->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar o usuário # {0}?', $tipoOcorrencia->id)]) ?>
+                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'TipoOcorrencias', 'action' => 'delete', $tipoOcorrencia->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar o tipo de ocorrencia # {0}?', $tipoOcorrencia->id)]) ?>
                         </div>
                     </div>
                 </td>
@@ -67,6 +68,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Tipo Ocorrencia'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Gravidades'), ['controller' => 'Gravidades', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Gravidade'), ['controller' => 'Gravidades', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Ocorrencias'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Ocorrencia'), ['controller' => 'Ocorrencias', 'action' => 'add']) ?></li>
     </ul>
@@ -78,6 +81,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tipo_ocorrencia') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('gravidade_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -86,6 +90,7 @@
             <tr>
                 <td><?= $this->Number->format($tipoOcorrencia->id) ?></td>
                 <td><?= h($tipoOcorrencia->tipo_ocorrencia) ?></td>
+                <td><?= $tipoOcorrencia->has('gravidade') ? $this->Html->link($tipoOcorrencia->gravidade->gravidade, ['controller' => 'Gravidades', 'action' => 'view', $tipoOcorrencia->gravidade->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $tipoOcorrencia->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $tipoOcorrencia->id]) ?>

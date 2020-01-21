@@ -28,7 +28,7 @@
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Medida Aplicada</label>
-        <?= $this->Form->control('medida', ['class' =>'form-control','placeholder'=>'Medida Aplicada','label' => false]) ?>
+        <?= $this->Form->control('medida_id', ['class' =>'form-control','placeholder'=>'Medida Aplicada','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Data do Ocorrido</label>

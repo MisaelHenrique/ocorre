@@ -1,6 +1,6 @@
 <div class="d-flex">
     <div class="mr-auto p-2">
-        <h2 class="display-4 titulo">Cadastrar TIpo de Ocorrencia</h2>
+        <h2 class="display-4 titulo">Cadastrar Tipo de Ocorrencia</h2>
     </div>
     <div class="p-2">
         <?= $this->Html->link(_('Listar'), ['controller' => 'TipoOcorrencias', 'action' => 'index'], ['class'=>'btn btn-outline-info btn-sm']) ?>
@@ -16,11 +16,16 @@
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-md-6">
+<div class="form-group col-md-6">
+        <label><span class="text-danger">*</span> Gravidade</label>
+        <?= $this->Form->control('gravidade_id', ['class' =>'form-control','placeholder'=>'Gravidade','label' => false]) ?>
+    </div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Descrição</label>
         <?= $this->Form->control('descricao', ['class' =>'form-control','placeholder'=>'Descrição','label' => false]) ?>
     </div>
-</div>
 </div>
 <p>
     <span class="text-danger">* </span>Campo obrigatório
@@ -39,6 +44,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Tipo Ocorrencias'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Gravidades'), ['controller' => 'Gravidades', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Gravidade'), ['controller' => 'Gravidades', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Ocorrencias'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Ocorrencia'), ['controller' => 'Ocorrencias', 'action' => 'add']) ?></li>
     </ul>
@@ -49,6 +56,7 @@
         <legend><?= __('Add Tipo Ocorrencia') ?></legend>
         <?php
             echo $this->Form->control('tipo_ocorrencia');
+            echo $this->Form->control('gravidade_id', ['options' => $gravidades]);
             echo $this->Form->control('descricao');
         ?>
     </fieldset>

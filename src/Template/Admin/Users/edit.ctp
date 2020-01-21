@@ -6,7 +6,7 @@
         <span class="d-none d-md-block">
             <?= $this->Html->link(_('Listar'), ['controller' => 'Users', 'action' => 'index'], ['class' => 'btn btn-outline-info btn-sm']) ?>
             <?= $this->Html->link(_('Visualizar'), ['controller' => 'Users', 'action' => 'view', $user->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
-            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Users', 'action' => 'delete', $user->id], ['class' => 'btn btn-outline-danger btn-sm', 'confirm' => __('Deseja realmente apara o usuário # {0}?', $user->id)]) ?>
+            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Users', 'action' => 'delete', $user->id], ['class' => 'btn btn-outline-danger btn-sm', 'confirm' => __('Deseja realmente apagar o usuário # {0}?', $user->id)]) ?>
         </span>
         <div class="dropdown d-block d-md-none">
             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -1,3 +1,4 @@
+<?php // debug($ocorrencia); exit(); ?>
 <div class="d-flex">
     <div class="mr-auto p-2">
         <h2 class="display-4 titulo">Ocorrencia</h2>
@@ -6,7 +7,7 @@
         <span class="d-none d-md-block">
             <?= $this->Html->link(_('Listar'), ['controller' => 'Ocorrencias', 'action' => 'index'], ['class'=>'btn btn-outline-info btn-sm'])?>
             <?= $this->Html->link(_('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class'=>'btn btn-outline-warning btn-sm'])?>
-            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class'=>'btn btn-outline-danger btn-sm','confirm' => __('Deseja realmente apagar o usuário # {0}?', $ocorrencia->id)]) ?>
+            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class'=>'btn btn-outline-danger btn-sm','confirm' => __('Deseja realmente apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>
 
         </span>
         <div class="dropdown d-block d-md-none">
@@ -18,7 +19,7 @@
 
                 <?= $this->Html->link(_('Listar'), ['controller' => 'Ocorrencias', 'action' => 'index'], ['class'=>'dropdown-item'])?>
                 <?= $this->Html->link(_('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class'=>'dropdown-item'])?>
-                <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class'=>'dropdown-item','confirm' => __('Deseja realmente apagar o usuário # {0}?', $ocorrencia->id)]) ?>
+                <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class'=>'dropdown-item','confirm' => __('Deseja realmente apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>
             </div>
         </div>
     </div>
@@ -30,10 +31,13 @@
     <dd class="col-sm-9"><?= $this->Number->format($ocorrencia->id) ?></dd>
 
     <dt class="col-sm-3">Nome do aluno</dt>
-    <dd class="col-sm-9"><?= h($ocorrencia->aluno->nome) ?></dd>
+    <dd class="col-sm-9"><?= h($ocorrencia->aluno->name) ?></dd>
 
     <dt class="col-sm-3">Curso</dt>
-    <dd class="col-sm-9"><?= h($ocorrencia->aluno->curso) ?></dd>
+    <dd class="col-sm-9"><?= h($ocorrencia->aluno_id->curso) ? $this->Html->link($aluno->curso->curso, ['controller' => 'Cursos', 'action' => 'view', $aluno->curso->id]) : '' ?></dd>
+
+    <dt class="col-sm-3">Servidor</dt>
+    <dd class="col-sm-9"><?= h($ocorrencia->user->name) ?></dd>
 
     <dt class="col-sm-3">Tipo Ocorrencia </dt>
     <dd class="col-sm-9"><?= h($ocorrencia->tipo_ocorrencia->tipo_ocorrencia) ?></dd>

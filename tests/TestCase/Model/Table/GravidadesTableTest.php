@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\TipoOcorrenciasTable;
+use App\Model\Table\GravidadesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\TipoOcorrenciasTable Test Case
+ * App\Model\Table\GravidadesTable Test Case
  */
-class TipoOcorrenciasTableTest extends TestCase
+class GravidadesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\TipoOcorrenciasTable
+     * @var \App\Model\Table\GravidadesTable
      */
-    public $TipoOcorrencias;
+    public $Gravidades;
 
     /**
      * Fixtures
@@ -23,9 +23,9 @@ class TipoOcorrenciasTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.TipoOcorrencias',
         'app.Gravidades',
         'app.Ocorrencias',
+        'app.TipoOcorrencias',
     ];
 
     /**
@@ -36,8 +36,8 @@ class TipoOcorrenciasTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('TipoOcorrencias') ? [] : ['className' => TipoOcorrenciasTable::class];
-        $this->TipoOcorrencias = TableRegistry::getTableLocator()->get('TipoOcorrencias', $config);
+        $config = TableRegistry::getTableLocator()->exists('Gravidades') ? [] : ['className' => GravidadesTable::class];
+        $this->Gravidades = TableRegistry::getTableLocator()->get('Gravidades', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class TipoOcorrenciasTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->TipoOcorrencias);
+        unset($this->Gravidades);
 
         parent::tearDown();
     }
@@ -68,16 +68,6 @@ class TipoOcorrenciasTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

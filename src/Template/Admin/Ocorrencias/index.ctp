@@ -36,7 +36,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o usuário # {0}?', $ocorrencia->id)]) ?>
+                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>
                     </span>
 
                     <div class="dropdown d-block d-md-none">
@@ -49,7 +49,7 @@
 
                             <?= $this->Html->link(__('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class' => 'dropdown-item']) ?>
 
-                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar o usuário # {0}?', $ocorrencia->id)]) ?>
+                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>
                         </div>
                     </div>
                 </td>

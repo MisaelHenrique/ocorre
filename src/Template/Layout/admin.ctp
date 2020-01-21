@@ -29,7 +29,7 @@ $cakeDescription = 'Ocorre';
 
     <?= $this->Html->css(['bootstrap.min']) ?>
     <?= $this->Html->script(['fontawesome-all.min']) ?>
-    <?= $this->Html->css(['fontawesome.min', 'dashboard']) ?>
+    <?= $this->Html->css(['fontawesome.min', 'dashboard', 'chart.min']) ?>
 
 
     <?= $this->fetch('meta') ?>
@@ -50,7 +50,7 @@ $cakeDescription = 'Ocorre';
     </div>
 
 
-    <?= $this->Html->script(['jquery-3.4.1.min','popper.min', 'bootstrap.min', 'dashboard']) ?>
+    <?= $this->Html->script(['jquery-3.4.1.min','popper.min', 'bootstrap.min', 'dashboard', 'chart']) ?>
 </body>
 
 </html>

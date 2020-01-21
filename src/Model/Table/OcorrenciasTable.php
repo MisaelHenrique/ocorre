@@ -48,6 +48,7 @@ class OcorrenciasTable extends Table
         $this->belongsTo('Alunos', [
             'foreignKey' => 'aluno_id',
             'joinType' => 'INNER',
+            'sort' => ['Alunos.name' => 'asc']
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',

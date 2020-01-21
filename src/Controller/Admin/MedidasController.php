@@ -51,11 +51,11 @@ class MedidasController extends AppController
         if ($this->request->is('post')) {
             $medida = $this->Medidas->patchEntity($medida, $this->request->getData());
             if ($this->Medidas->save($medida)) {
-                $this->Flash->success(__('The medida has been saved.'));
+                $this->Flash->success(__('Medida salva com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The medida could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Medida não salva com sucesso.'));
         }
         $this->set(compact('medida'));
     }
@@ -75,11 +75,11 @@ class MedidasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $medida = $this->Medidas->patchEntity($medida, $this->request->getData());
             if ($this->Medidas->save($medida)) {
-                $this->Flash->success(__('The medida has been saved.'));
+                $this->Flash->success(__('Medida editada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The medida could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Medida não editada com sucesso.'));
         }
         $this->set(compact('medida'));
     }
@@ -96,9 +96,9 @@ class MedidasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $medida = $this->Medidas->get($id);
         if ($this->Medidas->delete($medida)) {
-            $this->Flash->success(__('The medida has been deleted.'));
+            $this->Flash->success(__('Medida deletada dom sucesso.'));
         } else {
-            $this->Flash->error(__('The medida could not be deleted. Please, try again.'));
+            $this->Flash->error(__('ERRO: Medida não deletada com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);

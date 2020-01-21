@@ -39,11 +39,15 @@ class AlunosTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Cursos', [
             'foreignKey' => 'curso_id',
             'joinType' => 'INNER',
+            'sort' => [
+                'Cursos.curso' => 'asc'
+            ]
         ]);
         $this->hasMany('Ocorrencias', [
             'foreignKey' => 'aluno_id',
@@ -80,9 +84,9 @@ class AlunosTable extends Table
             ->notEmptyString('sexo');
 
         $validator
-            ->date('data_nasc')
-            ->requirePresence('data_nasc', 'create')
-            ->notEmptyDate('data_nasc');
+            //->date('data_nasc')
+            ->requirePresence('data_nasc', 'create');
+            //->notEmptyDate('data_nasc');
 
         return $validator;
     }

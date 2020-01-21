@@ -28,7 +28,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'Cursos', 'action' => 'edit', $curso->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o usuário # {0}?', $curso->id)]) ?>
+                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o curso # {0}?', $curso->id)]) ?>
                     </span>
 
                     <div class="dropdown d-block d-md-none">
@@ -41,7 +41,7 @@
 
                             <?= $this->Html->link(__('Editar'), ['controller' => 'Cursos', 'action' => 'edit', $curso->id], ['class' => 'dropdown-item']) ?>
 
-                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar o usuário # {0}?', $curso->id)]) ?>
+                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar o curso # {0}?', $curso->id)]) ?>
                         </div>
                     </div>
                 </td>

@@ -19,6 +19,9 @@ class TipoOcorrenciasController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Gravidades'],
+        ];
         $tipoOcorrencias = $this->paginate($this->TipoOcorrencias);
 
         $this->set(compact('tipoOcorrencias'));
@@ -34,7 +37,7 @@ class TipoOcorrenciasController extends AppController
     public function view($id = null)
     {
         $tipoOcorrencia = $this->TipoOcorrencias->get($id, [
-            'contain' => ['Ocorrencias'],
+            'contain' => ['Gravidades', 'Ocorrencias'],
         ]);
 
         $this->set('tipoOcorrencia', $tipoOcorrencia);
@@ -57,7 +60,8 @@ class TipoOcorrenciasController extends AppController
             }
             $this->Flash->error(__('The tipo ocorrencia could not be saved. Please, try again.'));
         }
-        $this->set(compact('tipoOcorrencia'));
+        $gravidades = $this->TipoOcorrencias->Gravidades->find('list', ['limit' => 200]);
+        $this->set(compact('tipoOcorrencia', 'gravidades'));
     }
 
     /**
@@ -81,7 +85,8 @@ class TipoOcorrenciasController extends AppController
             }
             $this->Flash->error(__('The tipo ocorrencia could not be saved. Please, try again.'));
         }
-        $this->set(compact('tipoOcorrencia'));
+        $gravidades = $this->TipoOcorrencias->Gravidades->find('list', ['limit' => 200]);
+        $this->set(compact('tipoOcorrencia', 'gravidades'));
     }
 
     /**

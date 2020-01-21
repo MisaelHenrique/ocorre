@@ -6,7 +6,7 @@
         <span class="d-none d-md-block">
             <?= $this->Html->link(_('Listar'), ['controller' => 'Cursos', 'action' => 'index'], ['class'=>'btn btn-outline-info btn-sm']) ?>
             <?= $this->Html->link(_('Visualizar'), ['controller' => 'Cursos', 'action' => 'view', $curso->id], ['class'=>'btn btn-outline-primary btn-sm']) ?>
-            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class'=>'btn btn-outline-danger btn-sm', 'confirm' => __('Deseja realmente apara o usuário # {0}?', $curso->id)]) ?>
+            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class'=>'btn btn-outline-danger btn-sm', 'confirm' => __('Deseja realmente apagar o curso # {0}?', $curso->id)]) ?>
         </span>
         <div class="dropdown d-block d-md-none">
             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown"
@@ -17,7 +17,7 @@
 
                 <?= $this->Html->link(_('Listar'), ['controller' => 'Cursos', 'action' => 'index'], ['class'=>'dropdown-item'])?>
                 <?= $this->Html->link(_('Visualizar'), ['controller' => 'Cursos', 'action' => 'view', $curso->id], ['class'=>'dropdown-item'])?>
-                <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class'=>'dropdown-item','confirm' => __('Deseja realmente apagar o usuário # {0}?', $curso->id)]) ?>
+                <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class'=>'dropdown-item','confirm' => __('Deseja realmente apagar o curso # {0}?', $curso->id)]) ?>
             </div>
         </div>
     </div>

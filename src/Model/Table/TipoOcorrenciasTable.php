@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * TipoOcorrencias Model
  *
+ * @property \App\Model\Table\GravidadesTable&\Cake\ORM\Association\BelongsTo $Gravidades
  * @property \App\Model\Table\OcorrenciasTable&\Cake\ORM\Association\HasMany $Ocorrencias
  *
  * @method \App\Model\Entity\TipoOcorrencia get($primaryKey, $options = [])
@@ -36,6 +37,10 @@ class TipoOcorrenciasTable extends Table
         $this->setDisplayField('tipo_ocorrencia');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('Gravidades', [
+            'foreignKey' => 'gravidade_id',
+            'joinType' => 'INNER',
+        ]);
         $this->hasMany('Ocorrencias', [
             'foreignKey' => 'tipo_ocorrencia_id',
         ]);
@@ -64,5 +69,19 @@ class TipoOcorrenciasTable extends Table
             ->allowEmptyString('descricao');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['gravidade_id'], 'Gravidades'));
+
+        return $rules;
     }
 }

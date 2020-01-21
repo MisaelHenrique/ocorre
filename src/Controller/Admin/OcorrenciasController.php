@@ -52,7 +52,9 @@ class OcorrenciasController extends AppController
     {
         $ocorrencia = $this->Ocorrencias->newEntity();
         if ($this->request->is('post')) {
+            
             $ocorrencia = $this->Ocorrencias->patchEntity($ocorrencia, $this->request->getData());
+            $ocorrencia['user_id'] = $this->Auth->user('id');
             if ($this->Ocorrencias->save($ocorrencia)) {
                 $this->Flash->success(__('The ocorrencia has been saved.'));
 

@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Alunos Controller
@@ -21,6 +22,7 @@ class AlunosController extends AppController
     {
         $this->paginate = [
             'contain' => ['Cursos'],
+            'order' => ['Alunos.id']
         ];
         $alunos = $this->paginate($this->Alunos);
 
@@ -36,11 +38,14 @@ class AlunosController extends AppController
      */
     public function view($id = null)
     {
+
         $aluno = $this->Alunos->get($id, [
             'contain' => ['Cursos', 'Ocorrencias'],
         ]);
 
         $this->set('aluno', $aluno);
+
+
     }
 
     /**
@@ -53,12 +58,13 @@ class AlunosController extends AppController
         $aluno = $this->Alunos->newEntity();
         if ($this->request->is('post')) {
             $aluno = $this->Alunos->patchEntity($aluno, $this->request->getData());
+
             if ($this->Alunos->save($aluno)) {
                 $this->Flash->success(__('The aluno has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The aluno could not be saved. Please, try again.'));
+            $this->Flash->danger(__('The aluno could not be saved. Please, try again.'));
         }
         $cursos = $this->Alunos->Cursos->find('list', ['limit' => 200]);
         $this->set(compact('aluno', 'cursos'));

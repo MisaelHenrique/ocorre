@@ -16,16 +16,23 @@
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Nome</label>
-        <?= $this->Form->control('nome', ['class' =>'form-control','placeholder'=>'Nome completo','label' => false]) ?>
+        <?= $this->Form->control('name', ['class' =>'form-control','placeholder'=>'Nome completo','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Sexo</label>
-        <?= $this->Form->control('sexo', ['class' =>'form-control','placeholder'=>'Sexo','label' => false]) ?>
+        <?= $this->Form->control('sexo', ['options' => array('' => 'Selecione', 1 => 'Masculino', 2 => 'Feminino'),'class' =>'form-control','placeholder'=>'Sexo','label' => false]) ?>
     </div>
 
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Data de Nascimento</label>
-        <?= $this->Form->control('data_nasc', ['class' =>'form-control','placeholder'=>'Data de Nascimento','label' => false]) ?>
+        <?php 
+        $control_html = $this->Form->control('data_nasc', ['type' => 'text','class' =>'form-control','placeholder'=>'Data de Nascimento','label' => false]);
+
+        $date_control = str_replace('type="text"','type="date"', $control_html); 
+        
+        ?>
+        <?=  $date_control ?>
+        <?php // echo $this->Form->input('data_nasc', ['class' =>'form-control', 'type' => 'date' ,'placeholder'=>'Data de Nascimento','label' => false]) ?>
     </div>
 
     <div class="form-group col-md-6">

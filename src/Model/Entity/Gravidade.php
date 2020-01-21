@@ -4,17 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * TipoOcorrencia Entity
+ * Gravidade Entity
  *
  * @property int $id
- * @property string $tipo_ocorrencia
- * @property int $gravidade_id
- * @property string|null $descricao
+ * @property string $gravidade
  *
- * @property \App\Model\Entity\Gravidade $gravidade
  * @property \App\Model\Entity\Ocorrencia[] $ocorrencias
+ * @property \App\Model\Entity\TipoOcorrencia[] $tipo_ocorrencias
  */
-class TipoOcorrencia extends Entity
+class Gravidade extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -26,10 +24,8 @@ class TipoOcorrencia extends Entity
      * @var array
      */
     protected $_accessible = [
-        'tipo_ocorrencia' => true,
-        'gravidade_id' => true,
-        'descricao' => true,
         'gravidade' => true,
         'ocorrencias' => true,
+        'tipo_ocorrencias' => true,
     ];
 }

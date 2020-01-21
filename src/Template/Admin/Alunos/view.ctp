@@ -1,3 +1,4 @@
+<?php //debug($aluno); exit; ?>
 <div class="d-flex">
     <div class="mr-auto p-2">
         <h2 class="display-4 titulo">Aluno</h2>
@@ -6,7 +7,7 @@
         <span class="d-none d-md-block">
             <?= $this->Html->link(_('Listar'), ['controller' => 'Alunos', 'action' => 'index'], ['class'=>'btn btn-outline-info btn-sm'])?>
             <?= $this->Html->link(_('Editar'), ['controller' => 'Alunos', 'action' => 'edit', $aluno->id], ['class'=>'btn btn-outline-warning btn-sm'])?>
-            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Alunos', 'action' => 'delete', $aluno->id], ['class'=>'btn btn-outline-danger btn-sm','confirm' => __('Deseja realmente apagar o usuário # {0}?', $aluno->id)]) ?>
+            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Alunos', 'action' => 'delete', $aluno->id], ['class'=>'btn btn-outline-danger btn-sm','confirm' => __('Deseja realmente apagar o aluno # {0}?', $aluno->id)]) ?>
 
         </span>
         <div class="dropdown d-block d-md-none">
@@ -18,7 +19,7 @@
 
                 <?= $this->Html->link(_('Listar'), ['controller' => 'Alunos', 'action' => 'index'], ['class'=>'dropdown-item'])?>
                 <?= $this->Html->link(_('Editar'), ['controller' => 'Alunos', 'action' => 'edit', $aluno->id], ['class'=>'dropdown-item'])?>
-                <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Alunos', 'action' => 'delete', $aluno->id], ['class'=>'dropdown-item','confirm' => __('Deseja realmente apagar o usuário # {0}?', $aluno->id)]) ?>
+                <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Alunos', 'action' => 'delete', $aluno->id], ['class'=>'dropdown-item','confirm' => __('Deseja realmente apagar o aluno # {0}?', $aluno->id)]) ?>
             </div>
         </div>
     </div>
@@ -56,7 +57,7 @@
         <span class="d-none d-md-block">
             <?= $this->Html->link(_('Listar'), ['controller' => 'Ocorrencias', 'action' => 'index'], ['class'=>'btn btn-outline-info btn-sm'])?>
             <?= $this->Html->link(_('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class'=>'btn btn-outline-warning btn-sm'])?>
-            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class'=>'btn btn-outline-danger btn-sm','confirm' => __('Deseja realmente apagar o usuário # {0}?', $ocorrencia->id)]) ?>
+            <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class'=>'btn btn-outline-danger btn-sm','confirm' => __('Deseja realmente apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>
 
         </span>
         <div class="dropdown d-block d-md-none">
@@ -68,10 +69,12 @@
 
                 <?= $this->Html->link(_('Listar'), ['controller' => 'Ocorrencias', 'action' => 'index'], ['class'=>'dropdown-item'])?>
                 <?= $this->Html->link(_('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class'=>'dropdown-item'])?>
-                <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class'=>'dropdown-item','confirm' => __('Deseja realmente apagar o usuário # {0}?', $ocorrencia->id)]) ?>
+                <?= $this->Form->postLink(_('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class'=>'dropdown-item','confirm' => __('Deseja realmente apagar o ocorrencia # {0}?', $ocorrencia->id)]) ?>
             </div>
         </div>
+        
     </div>
+
 </div>
 <hr>
 <?= $this->Flash->render() ?>
@@ -80,7 +83,7 @@
     <dd class="col-sm-9"><?= $this->Number->format($ocorrencia->id) ?></dd>
 
     <dt class="col-sm-3">Nome do aluno</dt>
-    <dd class="col-sm-9"><?= h($ocorrencia->aluno_id->name) ?></dd>
+    <dd class="col-sm-9"><?= h($ocorrencia->aluno_id) ?></dd>
 
     <dt class="col-sm-3">Curso</dt>
     <dd class="col-sm-9"><?= h($ocorrencia->aluno_id->curso_id) ?></dd>
@@ -108,6 +111,70 @@
     <?php endforeach; ?>
     <?php endif; ?>
 </dl>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                
+                <th class="d-none d-sm-table-cell">Data</th>
+                <th>Gravidade</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($aluno->ocorrencias as $ocorrencia): ?>
+            <tr>
+                <td><?= $this->Number->format($ocorrencia->id) ?></td>
+                <td class="d-none d-sm-table-cell"><?= h($ocorrencia->data) ?></td>
+                <td >
+                    <?= $ocorrencia['gravidade_id'] ?>
+                    <?= $ocorrencia->has('gravidade') ? $this->Html->link($ocorrencia->gravidade->gravidade, ['controller' => 'Gravidades', 'action' => 'view', $ocorrencia->gravidade->id]) : '' ?>
+                </td>
+                <td>
+                    <span class="d-none d-md-block">
+                        <?= $this->Html->link(__('Visualizar'), ['controller' => 'Ocorrencias', 'action' => 'view', $ocorrencia->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
+
+                        <?= $this->Html->link(__('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
+
+                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>
+                    </span>
+
+                    <div class="dropdown d-block d-md-none">
+                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ações
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
+                            <?= $this->Html->link(__('Visualizar'), ['controller' => 'Ocorrencias', 'action' => 'view', $ocorrencia->id], ['class' => 'dropdown-item']) ?>
+
+                            <?= $this->Html->link(__('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class' => 'dropdown-item']) ?>
+
+                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+    <h1>Estatisticas</h1>
+    <hr>
+
+    <div class="form-row">
+        <div class="form-group col-md-9">
+        <canvas id="myChart"></canvas>
+        </div>    
+    </div>
+    
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+
+
 
 
 <?php

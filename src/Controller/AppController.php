@@ -77,7 +77,6 @@ class AppController extends Controller
             if(($this->request->getParam(['action']) !== null ) AND ($this->request->getParam(['action']) == 'login')){
                 $this->viewBuilder()->setLayout('login');
             }else{
-                //$perfilUser = $this->Auth->user();
                 $user = TableRegistry::get('Users');
                 $perfilUser = $user->getUserDados($this->Auth->user('id'));
                 

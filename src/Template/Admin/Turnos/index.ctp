@@ -29,7 +29,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'Turnos', 'action' => 'edit', $turno->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Turnos', 'action' => 'delete', $turno->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o usuário # {0}?', $turno->id)]) ?>
+                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Turnos', 'action' => 'delete', $turno->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o turno # {0}?', $turno->id)]) ?>
                     </span>
 
                     <div class="dropdown d-block d-md-none">
@@ -42,7 +42,7 @@
 
                             <?= $this->Html->link(__('Editar'), ['controller' => 'Turnos', 'action' => 'edit', $turno->id], ['class' => 'dropdown-item']) ?>
 
-                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Turnos', 'action' => 'delete', $turno->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar o usuário # {0}?', $turno->id)]) ?>
+                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Turnos', 'action' => 'delete', $turno->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar o turno # {0}?', $turno->id)]) ?>
                         </div>
                     </div>
                 </td>

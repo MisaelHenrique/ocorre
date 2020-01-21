@@ -1,9 +1,9 @@
 <nav class="sidebar">
     <ul class="list-unstyled">
         <li><?= $this->Html->link(
-                '<i class="fas fa-tachometer-alt"></i> Dashboard', 
+                '<i class="far fa-chart-bar"></i> Estatisticas', 
                 [
-                    'controller' => 'Welcomes', 
+                    'controller' => 'Estatisticas', 
                     'action' => 'index' 
                 ],
                 [
@@ -111,7 +111,7 @@
         <li><?= $this->Html->link(
                 '<i class="fas fa-sign-out-alt"></i> Sair', 
                 [
-                    'controller' => 'Servidores', 
+                    'controller' => 'Users', 
                     'action' => 'logout' 
                 ],
                 [

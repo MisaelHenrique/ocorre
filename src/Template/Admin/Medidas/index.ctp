@@ -32,7 +32,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'Medidas', 'action' => 'edit', $medida->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Medidas', 'action' => 'delete', $medida->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o usuário # {0}?', $medida->id)]) ?>
+                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Medidas', 'action' => 'delete', $medida->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar a medida # {0}?', $medida->id)]) ?>
                     </span>
 
                     <div class="dropdown d-block d-md-none">
@@ -45,7 +45,7 @@
 
                             <?= $this->Html->link(__('Editar'), ['controller' => 'Medidas', 'action' => 'edit', $medida->id], ['class' => 'dropdown-item']) ?>
 
-                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Medidas', 'action' => 'delete', $medida->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar o usuário # {0}?', $medida->id)]) ?>
+                            <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Medidas', 'action' => 'delete', $medida->id], ['class' =>'dropdown-item', 'confirm' => __('Relamente deseja apagar a medida # {0}?', $medida->id)]) ?>
                         </div>
                     </div>
                 </td>
