@@ -17,12 +17,15 @@ class OcorrenciasController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
-    {
+    public function index() {
         $this->paginate = [
-            'contain' => ['Alunos', 'Users', 'TipoOcorrencias', 'Gravidades', 'Turnos', 'Medidas'],
-        ];
-        $ocorrencias = $this->paginate($this->Ocorrencias);
+            'limit' => 40,
+            'contain' => ['Alunos', 'Users', 'TipoOcorrencias', 'TipoOcorrencias.Gravidades', 'Turnos', 'Medidas'],
+            'order' => ['Ocorrencias.data DESC']        ];
+        
+        $ocorrencias = $this->paginate($this->Ocorrencias->find('all', [
+
+        ]));
 
         $this->set(compact('ocorrencias'));
     }
@@ -37,7 +40,7 @@ class OcorrenciasController extends AppController
     public function view($id = null)
     {
         $ocorrencia = $this->Ocorrencias->get($id, [
-            'contain' => ['Alunos', 'Users', 'TipoOcorrencias', 'Gravidades', 'Turnos', 'Medidas'],
+            'contain' => ['Alunos', 'Alunos.Cursos', 'Users', 'TipoOcorrencias', 'TipoOcorrencias.Gravidades', 'Turnos', 'Medidas'],
         ]);
 
         $this->set('ocorrencia', $ocorrencia);
@@ -56,11 +59,11 @@ class OcorrenciasController extends AppController
             $ocorrencia = $this->Ocorrencias->patchEntity($ocorrencia, $this->request->getData());
             $ocorrencia['user_id'] = $this->Auth->user('id');
             if ($this->Ocorrencias->save($ocorrencia)) {
-                $this->Flash->success(__('The ocorrencia has been saved.'));
+                $this->Flash->success(__('Ocorrencia adicionada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ocorrencia could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Ocorrencia não adicionada com sucesso.'));
         }
         $alunos = $this->Ocorrencias->Alunos->find('list', ['limit' => 200]);
         $users = $this->Ocorrencias->Users->find('list', ['limit' => 200]);
@@ -68,7 +71,7 @@ class OcorrenciasController extends AppController
         $gravidades = $this->Ocorrencias->Gravidades->find('list', ['limit' => 200]);
         $turnos = $this->Ocorrencias->Turnos->find('list', ['limit' => 200]);
         $medidas = $this->Ocorrencias->Medidas->find('list', ['limit' => 200]);
-        $this->set(compact('ocorrencia', 'alunos', 'users', 'tipoOcorrencias', 'gravidades', 'turnos', 'medidas'));
+        $this->set(compact('ocorrencia', 'alunos', 'users', 'tipoOcorrencias', 'turnos', 'medidas'));
     }
 
     /**
@@ -86,11 +89,11 @@ class OcorrenciasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $ocorrencia = $this->Ocorrencias->patchEntity($ocorrencia, $this->request->getData());
             if ($this->Ocorrencias->save($ocorrencia)) {
-                $this->Flash->success(__('The ocorrencia has been saved.'));
+                $this->Flash->success(__('Ocorrencia editada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ocorrencia could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Ocorrencia não editada com sucesso.'));
         }
         $alunos = $this->Ocorrencias->Alunos->find('list', ['limit' => 200]);
         $users = $this->Ocorrencias->Users->find('list', ['limit' => 200]);
@@ -98,7 +101,7 @@ class OcorrenciasController extends AppController
         $gravidades = $this->Ocorrencias->Gravidades->find('list', ['limit' => 200]);
         $turnos = $this->Ocorrencias->Turnos->find('list', ['limit' => 200]);
         $medidas = $this->Ocorrencias->Medidas->find('list', ['limit' => 200]);
-        $this->set(compact('ocorrencia', 'alunos', 'users', 'tipoOcorrencias', 'gravidades', 'turnos', 'medidas'));
+        $this->set(compact('ocorrencia', 'alunos', 'users', 'tipoOcorrencias', 'turnos', 'medidas'));
     }
 
     /**
@@ -113,9 +116,9 @@ class OcorrenciasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $ocorrencia = $this->Ocorrencias->get($id);
         if ($this->Ocorrencias->delete($ocorrencia)) {
-            $this->Flash->success(__('The ocorrencia has been deleted.'));
+            $this->Flash->success(__('Ocorrencia deletada com sucesso.'));
         } else {
-            $this->Flash->error(__('The ocorrencia could not be deleted. Please, try again.'));
+            $this->Flash->error(__('ERRO: Ocorrencia não deletada com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);

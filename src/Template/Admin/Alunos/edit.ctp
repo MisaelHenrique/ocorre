@@ -33,7 +33,7 @@
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Nome</label>
-        <?= $this->Form->control('name', ['class' =>'form-control','placeholder'=>'Nome completo','label' => false]) ?>
+        <?= $this->Form->control('nome', ['class' =>'form-control','placeholder'=>'Nome completo','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Sexo</label>
@@ -93,7 +93,7 @@
         <legend><?= __('Edit Aluno') ?></legend>
         <?php
             echo $this->Form->control('matricula');
-            echo $this->Form->control('name');
+            echo $this->Form->control('nome');
             echo $this->Form->control('sexo');
             echo $this->Form->control('data_nasc');
             echo $this->Form->control('curso_id', ['options' => $cursos]);

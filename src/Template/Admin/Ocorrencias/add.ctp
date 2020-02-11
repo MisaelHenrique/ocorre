@@ -19,24 +19,21 @@
         <?= $this->Form->control('tipo_ocorrencia_id', ['class' =>'form-control','placeholder'=>'Tipo de Ocorrencia','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
-        <label><span class="text-danger">*</span> Gravidade</label>
-        <?= $this->Form->control('gravidade_id', ['class' =>'form-control','placeholder'=>'Gravidade','label' => false]) ?>
+        <label><span class="text-danger">*</span> Medida Aplicada</label>
+        <?= $this->Form->control('medida_id', ['class' =>'form-control','placeholder'=>'Medida Aplicada','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Turno Ocorrido</label>
         <?= $this->Form->control('turno_id', ['class' =>'form-control','placeholder'=>'Turno Ocorrido','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
-        <label><span class="text-danger">*</span> Medida Aplicada</label>
-        <?= $this->Form->control('medida_id', ['class' =>'form-control','placeholder'=>'Medida Aplicada','label' => false]) ?>
-    </div>
-    <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Data do Ocorrido</label>
-        <?= $this->Form->control('data', ['class' =>'form-control','label' => false]) ?>
-    </div>
-    <div class="form-group col-md-6">
-        <label><span class="text-danger">*</span> Data do Cadastro</label>
-        <?= $this->Form->control('created', ['class' =>'form-control','label' => false]) ?>
+        <?php $control_html =$this->Form->control('data', ['type' => 'text','class' =>'form-control','label' => false]);
+
+        $date_control = str_replace('type="text"','type="date"', $control_html); 
+        ?>
+        
+        <?=  $date_control ?>
     </div>
     <div class="form-group col-md-9">
         <label><span class="text-danger">*</span> Descrição</label>

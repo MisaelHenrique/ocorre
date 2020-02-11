@@ -74,8 +74,8 @@ class AppController extends Controller
 
          if($prefix == 'admin')
         {
-            if(($this->request->getParam(['action']) !== null ) AND ($this->request->getParam(['action']) == 'login')){
-                $this->viewBuilder()->setLayout('login');
+            if(($this->request->getParam(['action']) !== null ) AND ($this->request->getParam(['action']) == 'login') OR ($this->request->getParam(['action']) == 'recuperarSenha')){
+                $this->viewBuilder()->setLayout('login') ;
             }else{
                 $user = TableRegistry::get('Users');
                 $perfilUser = $user->getUserDados($this->Auth->user('id'));

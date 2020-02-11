@@ -18,6 +18,14 @@ use Cake\Utility\Security;
  */
 class UsersController extends AppController
 {
+public function beforeFilter(Event $event)
+{
+    parent::beforeFilter($event);
+    // Permitir aos usuários se registrarem e efetuar logout.
+    // Você não deve adicionar a ação de "login" a lista de permissões.
+    // Isto pode causar problemas com o funcionamento normal do AuthComponent.
+    $this->Auth->allow(['logout','recuperarSenha']);
+}
     /**
      * Index method
      *
@@ -68,11 +76,11 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('Usuário cadastrado com sucesso!'));
+                $this->Flash->success(__('Usuário adicionado com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->danger(__('ERRO: Usuário não cadastrado!'));
+            $this->Flash->danger(__('ERRO: Usuário não adicionado com sucesso!'));
         }
         $this->set(compact('user'));
     }
@@ -131,6 +139,35 @@ class UsersController extends AppController
                 $this->Flash->danger(__('Erro: Foto não foi editada com sucesso.'));
             }
         }  
+
+        $this->set(compact('user'));
+    }
+    use MailerAwareTrait;
+    public function recuperarSenha()
+    {
+        $user = $this->Users->newEntity();
+        if($this->request->is('post')){
+
+            $userTable = TableRegistry::get('Users');
+            $recupSenha = $userTable->getRecuperarSenha($this->request->getData()['email']);
+            if($recupSenha){
+                if($recupSenha->recuperar_senha == ""){
+                    $user->id = $recupSenha->id;
+                    $user->recuperar_senha = Security::hash($this->request->getData()['email'] . $recupSenha->id . date("Y-m-d H:i:s"), 'sha256', false);
+                    $userTable->save($user);
+                    $recupSenha->recuperar_senha = $user->recuperar_senha;
+                }
+
+                $recupSenha->host_name = Router::fullBaseUrl(). $this->request->getAttribute('webroot') . $this->request->getParam('prefix');
+                $recupSenha->email = $this->request->getData()['email'];
+                $this->getMailer('User')->send('recuperarSenha', [$recupSenha]);
+                $this->Flash->success(__('Email enviado com sucesso, favor verificar'));
+                return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+            }else{
+                $this->Flash->danger(__('ERRO: Nenhum usuário encontrado'));
+                
+            }
+        }
 
         $this->set(compact('user'));
     }
@@ -240,9 +277,9 @@ class UsersController extends AppController
         $this->Users->deleteArq($destino);
         
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('Usuário apagado com sucesso'));
+            $this->Flash->success(__('Usuário deletado com sucesso'));
         } else {
-            $this->Flash->danger(__('Erro: Usuário não foi apagado com sucesso'));
+            $this->Flash->danger(__('Erro: Usuário não foi deletado com sucesso'));
         }
 
         return $this->redirect(['action' => 'index']);

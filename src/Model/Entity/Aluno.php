@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $matricula
- * @property string $name
+ * @property string $nome
  * @property int $sexo
  * @property \Cake\I18n\FrozenDate $data_nasc
  * @property int $curso_id
@@ -31,7 +31,7 @@ class Aluno extends Entity
      */
     protected $_accessible = [
         'matricula' => true,
-        'name' => true,
+        'nome' => true,
         'sexo' => true,
         'data_nasc' => true,
         'curso_id' => true,

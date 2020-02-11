@@ -24,7 +24,7 @@
             <tr>
                 <td><?= $this->Number->format($aluno->id) ?></td>
                 <td><?= h($aluno->matricula) ?></td>
-                <td><?= h($aluno->name) ?></td>
+                <td><?= h($aluno->nome) ?></td>
                 <td class="d-none d-sm-table-cell">
                     <?= h($aluno->curso->nome) ?>
             </td>
@@ -81,7 +81,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('matricula') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('sexo') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('data_nasc') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('curso_id') ?></th>
@@ -95,7 +95,7 @@
             <tr>
                 <td><?= $this->Number->format($aluno->id) ?></td>
                 <td><?= h($aluno->matricula) ?></td>
-                <td><?= h($aluno->name) ?></td>
+                <td><?= h($aluno->nome) ?></td>
                 <td><?= $this->Number->format($aluno->sexo) ?></td>
                 <td><?= h($aluno->data_nasc) ?></td>
                 <td><?= $aluno->has('curso') ? $this->Html->link($aluno->curso->id, ['controller' => 'Cursos', 'action' => 'view', $aluno->curso->id]) : '' ?></td>

@@ -51,11 +51,11 @@ class MedidasController extends AppController
         if ($this->request->is('post')) {
             $medida = $this->Medidas->patchEntity($medida, $this->request->getData());
             if ($this->Medidas->save($medida)) {
-                $this->Flash->success(__('Medida salva com sucesso.'));
+                $this->Flash->success(__('Medida adicionada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('ERRO: Medida não salva com sucesso.'));
+            $this->Flash->error(__('ERRO: Medida não adicionado com sucesso.'));
         }
         $this->set(compact('medida'));
     }

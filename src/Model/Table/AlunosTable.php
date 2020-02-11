@@ -36,7 +36,7 @@ class AlunosTable extends Table
         parent::initialize($config);
 
         $this->setTable('alunos');
-        $this->setDisplayField('name');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
 
@@ -51,6 +51,9 @@ class AlunosTable extends Table
         ]);
         $this->hasMany('Ocorrencias', [
             'foreignKey' => 'aluno_id',
+            'sort' => [
+                'Ocorrencias.data' => 'desc'
+            ]
         ]);
     }
 
@@ -73,10 +76,10 @@ class AlunosTable extends Table
             ->notEmptyString('matricula');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 220)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->scalar('nome')
+            ->maxLength('nome', 220)
+            ->requirePresence('nome', 'create')
+            ->notEmptyString('nome');
 
         $validator
             ->integer('sexo')
@@ -100,6 +103,7 @@ class AlunosTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['matricula'], 'Esta matricula já está cadastrada'));
         $rules->add($rules->existsIn(['curso_id'], 'Cursos'));
 
         return $rules;

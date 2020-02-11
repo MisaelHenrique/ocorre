@@ -51,11 +51,11 @@ class TurnosController extends AppController
         if ($this->request->is('post')) {
             $turno = $this->Turnos->patchEntity($turno, $this->request->getData());
             if ($this->Turnos->save($turno)) {
-                $this->Flash->success(__('The turno has been saved.'));
+                $this->Flash->success(__('Turno adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The turno could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Turno não adicionado com sucesso.'));
         }
         $this->set(compact('turno'));
     }
@@ -75,11 +75,11 @@ class TurnosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $turno = $this->Turnos->patchEntity($turno, $this->request->getData());
             if ($this->Turnos->save($turno)) {
-                $this->Flash->success(__('The turno has been saved.'));
+                $this->Flash->success(__('Turno editado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The turno could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Turno não editado com sucesso.'));
         }
         $this->set(compact('turno'));
     }
@@ -96,9 +96,9 @@ class TurnosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $turno = $this->Turnos->get($id);
         if ($this->Turnos->delete($turno)) {
-            $this->Flash->success(__('The turno has been deleted.'));
+            $this->Flash->success(__('Turno deletado com sucesso.'));
         } else {
-            $this->Flash->error(__('The turno could not be deleted. Please, try again.'));
+            $this->Flash->error(__('ERRO: Turno não deletado com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);

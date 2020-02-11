@@ -51,11 +51,11 @@ class GravidadesController extends AppController
         if ($this->request->is('post')) {
             $gravidade = $this->Gravidades->patchEntity($gravidade, $this->request->getData());
             if ($this->Gravidades->save($gravidade)) {
-                $this->Flash->success(__('The gravidade has been saved.'));
+                $this->Flash->success(__('Gravidade adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The gravidade could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Gravidade não adicionada com sucesso.'));
         }
         $this->set(compact('gravidade'));
     }
@@ -75,11 +75,11 @@ class GravidadesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $gravidade = $this->Gravidades->patchEntity($gravidade, $this->request->getData());
             if ($this->Gravidades->save($gravidade)) {
-                $this->Flash->success(__('The gravidade has been saved.'));
+                $this->Flash->success(__('Gravidade editada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The gravidade could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Gravidade não editado com sucesso.'));
         }
         $this->set(compact('gravidade'));
     }
@@ -96,9 +96,9 @@ class GravidadesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $gravidade = $this->Gravidades->get($id);
         if ($this->Gravidades->delete($gravidade)) {
-            $this->Flash->success(__('The gravidade has been deleted.'));
+            $this->Flash->success(__('Gravidade deletada com sucesso.'));
         } else {
-            $this->Flash->error(__('The gravidade could not be deleted. Please, try again.'));
+            $this->Flash->error(__('ERRO: Gravidade não deletada com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);

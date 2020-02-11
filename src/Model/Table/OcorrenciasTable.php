@@ -48,7 +48,7 @@ class OcorrenciasTable extends Table
         $this->belongsTo('Alunos', [
             'foreignKey' => 'aluno_id',
             'joinType' => 'INNER',
-            'sort' => ['Alunos.name' => 'asc']
+            'sort' => ['Alunos.nome' => 'asc']
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
@@ -56,10 +56,6 @@ class OcorrenciasTable extends Table
         ]);
         $this->belongsTo('TipoOcorrencias', [
             'foreignKey' => 'tipo_ocorrencia_id',
-            'joinType' => 'INNER',
-        ]);
-        $this->belongsTo('Gravidades', [
-            'foreignKey' => 'gravidade_id',
             'joinType' => 'INNER',
         ]);
         $this->belongsTo('Turnos', [
@@ -90,9 +86,9 @@ class OcorrenciasTable extends Table
             ->notEmptyString('descricao');
 
         $validator
-            ->dateTime('data')
-            ->requirePresence('data', 'create')
-            ->notEmptyDateTime('data');
+            //->dateTime('data')
+            ->requirePresence('data', 'create');
+            //->notEmptyDateTime('data');
 
         return $validator;
     }

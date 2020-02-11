@@ -51,11 +51,11 @@ class CursosController extends AppController
         if ($this->request->is('post')) {
             $curso = $this->Cursos->patchEntity($curso, $this->request->getData());
             if ($this->Cursos->save($curso)) {
-                $this->Flash->success(__('The curso has been saved.'));
+                $this->Flash->success(__('Curso adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The curso could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Curso não adicionado com sucesso.'));
         }
         $this->set(compact('curso'));
     }
@@ -75,11 +75,11 @@ class CursosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $curso = $this->Cursos->patchEntity($curso, $this->request->getData());
             if ($this->Cursos->save($curso)) {
-                $this->Flash->success(__('The curso has been saved.'));
+                $this->Flash->success(__('Curso editado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The curso could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Curso não editado com sucesso.'));
         }
         $this->set(compact('curso'));
     }
@@ -96,9 +96,9 @@ class CursosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $curso = $this->Cursos->get($id);
         if ($this->Cursos->delete($curso)) {
-            $this->Flash->success(__('The curso has been deleted.'));
+            $this->Flash->success(__('Curso deletado com sucesso.'));
         } else {
-            $this->Flash->error(__('The curso could not be deleted. Please, try again.'));
+            $this->Flash->error(__('ERRO: curso não deletado com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -35,24 +35,26 @@
         <?= $this->Form->control('tipo_ocorrencia_id', ['class' =>'form-control','placeholder'=>'Nome completo','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
-        <label><span class="text-danger">*</span> Gravidade</label>
-        <?= $this->Form->control('gravidade_id', ['class' =>'form-control','placeholder'=>'Sexo','label' => false]) ?>
+        <label><span class="text-danger">*</span> Medida</label>
+        <?= $this->Form->control('medida_id', ['class' =>'form-control','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Turno Ocorrido</label>
         <?= $this->Form->control('turno_id', ['class' =>'form-control','placeholder'=>'Date de Nascimento','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
-        <label><span class="text-danger">*</span> Medida</label>
-        <?= $this->Form->control('medida_id', ['class' =>'form-control','label' => false]) ?>
-    </div>
-    <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Data Ocorrido</label>
-        <?= $this->Form->control('created', ['class' =>'form-control','label' => false]) ?>
-    </div>
-    <div class="form-group col-md-6">
-        <label><span class="text-danger">*</span> Data Cadastro</label>
-        <?= $this->Form->control('data', ['class' =>'form-control','label' => false]) ?>
+
+        <?php 
+
+        use Cake\I18n\FrozenTime;
+        $time = new FrozenTime($ocorrencia['data']);
+
+        $control_html = $this->Form->control('created', ['type' => 'text','class' =>'form-control','placeholder'=>'Data do ocorrido','label' => false, 'value' => $time->format('Y-m-d')]);
+
+        $date_control = str_replace('type="text"','type="date"', $control_html); 
+
+        echo $date_control ?>
     </div>
 </div>
 <div class="form-row">

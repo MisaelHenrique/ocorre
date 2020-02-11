@@ -21,8 +21,9 @@ class AlunosController extends AppController
     public function index()
     {
         $this->paginate = [
+            'limit' => 40,
             'contain' => ['Cursos'],
-            'order' => ['Alunos.id']
+            'order' => ['Alunos.nome']
         ];
         $alunos = $this->paginate($this->Alunos);
 
@@ -40,7 +41,7 @@ class AlunosController extends AppController
     {
 
         $aluno = $this->Alunos->get($id, [
-            'contain' => ['Cursos', 'Ocorrencias'],
+            'contain' => ['Cursos', 'Ocorrencias', 'Ocorrencias.Turnos', 'Ocorrencias.Medidas', 'Ocorrencias.TipoOcorrencias', 'Ocorrencias.TipoOcorrencias.Gravidades'],
         ]);
 
         $this->set('aluno', $aluno);
@@ -60,11 +61,11 @@ class AlunosController extends AppController
             $aluno = $this->Alunos->patchEntity($aluno, $this->request->getData());
 
             if ($this->Alunos->save($aluno)) {
-                $this->Flash->success(__('The aluno has been saved.'));
+                $this->Flash->success(__('Aluno adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->danger(__('The aluno could not be saved. Please, try again.'));
+            $this->Flash->danger(__('ERRO: Aluno não adicionado com sucesso.'));
         }
         $cursos = $this->Alunos->Cursos->find('list', ['limit' => 200]);
         $this->set(compact('aluno', 'cursos'));
@@ -85,11 +86,11 @@ class AlunosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $aluno = $this->Alunos->patchEntity($aluno, $this->request->getData());
             if ($this->Alunos->save($aluno)) {
-                $this->Flash->success(__('The aluno has been saved.'));
+                $this->Flash->success(__('Aluno editado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The aluno could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Aluno não editado com sucesso.'));
         }
         $cursos = $this->Alunos->Cursos->find('list', ['limit' => 200]);
         $this->set(compact('aluno', 'cursos'));
@@ -107,9 +108,9 @@ class AlunosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $aluno = $this->Alunos->get($id);
         if ($this->Alunos->delete($aluno)) {
-            $this->Flash->success(__('The aluno has been deleted.'));
+            $this->Flash->success(__('Aluno deletado com sucesso.'));
         } else {
-            $this->Flash->error(__('The aluno could not be deleted. Please, try again.'));
+            $this->Flash->error(__('ERRO: Aluno não editado com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);

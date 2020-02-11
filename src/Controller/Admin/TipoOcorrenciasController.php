@@ -20,6 +20,7 @@ class TipoOcorrenciasController extends AppController
     public function index()
     {
         $this->paginate = [
+            'limit' => 40,
             'contain' => ['Gravidades'],
         ];
         $tipoOcorrencias = $this->paginate($this->TipoOcorrencias);
@@ -54,11 +55,11 @@ class TipoOcorrenciasController extends AppController
         if ($this->request->is('post')) {
             $tipoOcorrencia = $this->TipoOcorrencias->patchEntity($tipoOcorrencia, $this->request->getData());
             if ($this->TipoOcorrencias->save($tipoOcorrencia)) {
-                $this->Flash->success(__('The tipo ocorrencia has been saved.'));
+                $this->Flash->success(__('Tipo ocorrencia adicionada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The tipo ocorrencia could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Tipo ocorrencia não adicionado com sucesso.'));
         }
         $gravidades = $this->TipoOcorrencias->Gravidades->find('list', ['limit' => 200]);
         $this->set(compact('tipoOcorrencia', 'gravidades'));
@@ -79,11 +80,11 @@ class TipoOcorrenciasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $tipoOcorrencia = $this->TipoOcorrencias->patchEntity($tipoOcorrencia, $this->request->getData());
             if ($this->TipoOcorrencias->save($tipoOcorrencia)) {
-                $this->Flash->success(__('The tipo ocorrencia has been saved.'));
+                $this->Flash->success(__('Tipo ocorrencia adicionada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The tipo ocorrencia could not be saved. Please, try again.'));
+            $this->Flash->error(__('ERRO: Tipo ocorrencia não adicionado com sucesso.'));
         }
         $gravidades = $this->TipoOcorrencias->Gravidades->find('list', ['limit' => 200]);
         $this->set(compact('tipoOcorrencia', 'gravidades'));
@@ -101,9 +102,9 @@ class TipoOcorrenciasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $tipoOcorrencia = $this->TipoOcorrencias->get($id);
         if ($this->TipoOcorrencias->delete($tipoOcorrencia)) {
-            $this->Flash->success(__('The tipo ocorrencia has been deleted.'));
+            $this->Flash->success(__('Tipo ocorrencia deletada com sucesso.'));
         } else {
-            $this->Flash->error(__('The tipo ocorrencia could not be deleted. Please, try again.'));
+            $this->Flash->error(__('ERRO: Tipo ocorrencia não deletado com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);

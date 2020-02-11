@@ -35,14 +35,14 @@ var chart = new Chart(ctx, {
 
     type: 'bar',
     data: {
-        labels: ['Nula', 'Média', 'Grave', 'Gravissima'],
+        labels: ['Nula', 'Leve', 'Média', 'Grave', 'Gravissima'],
 
 
         datasets: [{
             label: 'Gráfico',
-            backgroundColor: ['lightgray', 'yellow', 'orange', 'red'],
+            backgroundColor: ['lightgray', 'green', 'yellow', 'orange', 'red'],
             borderColor: 'rgb(255, 99, 132)',
-            data: [10, 20, 30, 40]
+            data: [10, 20, 30, 40, 50]
         }]
     },
 

@@ -123,5 +123,15 @@ class UsersTable extends Table
                             ]);
         return $query->first();
     }   
+
+    public function getRecuperarSenha($email)
+    {
+        $query = $this->find()
+                    ->select(['id', 'name', 'email','username', 'recuperar_senha'])
+                    ->where([
+                        'Users.email' => $email
+                    ]);
+        return $query->first();
+    }
     
 }
