@@ -26,9 +26,10 @@
 </div>
 <hr>
 <?= $this->Flash->render() ?>
+<?php $sexo = array("Feminino", "Masculino"); ?>
 <dl class="row">
-    <dt class="col-sm-3">ID</dt>
-    <dd class="col-sm-9"><?= $this->Number->format($aluno->id) ?></dd>
+    <!--<dt class="col-sm-3">ID</dt>
+    <dd class="col-sm-9"><?= $this->Number->format($aluno->id) ?></dd>-->
 
     <dt class="col-sm-3">Matricula</dt>
     <dd class="col-sm-9"><?= h($aluno->matricula) ?></dd>
@@ -37,7 +38,7 @@
     <dt class="col-sm-3">Data de Nascimento</dt>
     <dd class="col-sm-9"><?= h($aluno->data_nasc) ?></dd>
     <dt class="col-sm-3">Sexo</dt>
-    <dd class="col-sm-9"><?= h($aluno->sexo) ?></dd>
+    <dd class="col-sm-9"><?= $sexo[h($aluno->sexo)] ?></dd>
     <dt class="col-sm-3">Curso</dt>
     <dd class="col-sm-9"><?= h($aluno->curso->nome) ?></dd>
     <dt class="col-sm-3">Criado</dt>
@@ -59,9 +60,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-
                     <th class="d-none d-sm-table-cell">Data</th>
-                    <th class="d-none d-sm-table-cell">Tipo de Ocorrencia</th>
+                    <th>Tipo de Ocorrencia</th>
                     <th>Gravidade</th>
                     <th class="text-center">Ações</th>
                 </tr>
@@ -72,8 +72,12 @@
                     <tr>
                         <td><?= $this->Number->format($ocorrencia->id) ?></td>
                         <td class="d-none d-sm-table-cell"><?= h($ocorrencia->data) ?></td>
-                        <td><?= h($ocorrencia->tipo_ocorrencia_id) ?></td>
-                        <td><?= h($ocorrencia->gravidade_id) ?></td>
+                        <td><?= h($ocorrencia->tipo_ocorrencia->tipo_ocorrencia) ?></td>
+
+                        <td >
+                            <?= $ocorrencia->tipo_ocorrencia->gravidade->gravidade ?>
+                            <?= $ocorrencia->has('gravidade') ? $this->Html->link($ocorrencia->gravidade->gravidade, ['controller' => 'Gravidades', 'action' => 'view', $ocorrencia->gravidade->id]) : '' ?>
+                        </td>
 
                         <td>
                             <span class="d-none d-md-block">
@@ -112,102 +116,3 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
-
-
-
-
-    <!--<?php
-        /**
-         * @var \App\View\AppView $this
-         * @var \App\Model\Entity\Aluno $aluno
-         */
-        ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Aluno'), ['action' => 'edit', $aluno->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Aluno'), ['action' => 'delete', $aluno->id], ['confirm' => __('Are you sure you want to delete # {0}?', $aluno->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Alunos'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Aluno'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Cursos'), ['controller' => 'Cursos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Curso'), ['controller' => 'Cursos', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Ocorrencias'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Ocorrencia'), ['controller' => 'Ocorrencias', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="alunos view large-9 medium-8 columns content">
-    <h3><?= h($aluno->nome) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Matricula') ?></th>
-            <td><?= h($aluno->matricula) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Nome') ?></th>
-            <td><?= h($aluno->nome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Curso') ?></th>
-            <td><?= $aluno->has('curso') ? $this->Html->link($aluno->curso->id, ['controller' => 'Cursos', 'action' => 'view', $aluno->curso->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($aluno->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Sexo') ?></th>
-            <td><?= $this->Number->format($aluno->sexo) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Data Nasc') ?></th>
-            <td><?= h($aluno->data_nasc) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($aluno->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($aluno->modified) ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Ocorrencias') ?></h4>
-        <?php if (!empty($aluno->ocorrencias)) : ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Descricao') ?></th>
-                <th scope="col"><?= __('Data') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Aluno Id') ?></th>
-                <th scope="col"><?= __('Servidore Id') ?></th>
-                <th scope="col"><?= __('Tipo Ocorrencia Id') ?></th>
-                <th scope="col"><?= __('Gravidade Id') ?></th>
-                <th scope="col"><?= __('Turno Id') ?></th>
-                <th scope="col"><?= __('Medida Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($aluno->ocorrencias as $ocorrencias) : ?>
-            <tr>
-                <td><?= h($ocorrencias->id) ?></td>
-                <td><?= h($ocorrencias->descricao) ?></td>
-                <td><?= h($ocorrencias->data) ?></td>
-                <td><?= h($ocorrencias->created) ?></td>
-                <td><?= h($ocorrencias->aluno_id) ?></td>
-                <td><?= h($ocorrencias->servidore_id) ?></td>
-                <td><?= h($ocorrencias->tipo_ocorrencia_id) ?></td>
-                <td><?= h($ocorrencias->gravidade_id) ?></td>
-                <td><?= h($ocorrencias->turno_id) ?></td>
-                <td><?= h($ocorrencias->medida_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Ocorrencias', 'action' => 'view', $ocorrencias->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencias->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencias->id], ['confirm' => __('Are you sure you want to delete # {0}?', $ocorrencias->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-</div>-->

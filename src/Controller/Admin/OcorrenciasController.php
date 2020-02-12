@@ -57,18 +57,18 @@ class OcorrenciasController extends AppController
         if ($this->request->is('post')) {
             
             $ocorrencia = $this->Ocorrencias->patchEntity($ocorrencia, $this->request->getData());
+            $this->loadComponent('Auth');
             $ocorrencia['user_id'] = $this->Auth->user('id');
             if ($this->Ocorrencias->save($ocorrencia)) {
                 $this->Flash->success(__('Ocorrencia adicionada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('ERRO: Ocorrencia não adicionada com sucesso.'));
+            $this->Flash->danger(__('ERRO: Ocorrencia não adicionada com sucesso.'));
         }
         $alunos = $this->Ocorrencias->Alunos->find('list', ['limit' => 200]);
         $users = $this->Ocorrencias->Users->find('list', ['limit' => 200]);
         $tipoOcorrencias = $this->Ocorrencias->TipoOcorrencias->find('list', ['limit' => 200]);
-        $gravidades = $this->Ocorrencias->Gravidades->find('list', ['limit' => 200]);
         $turnos = $this->Ocorrencias->Turnos->find('list', ['limit' => 200]);
         $medidas = $this->Ocorrencias->Medidas->find('list', ['limit' => 200]);
         $this->set(compact('ocorrencia', 'alunos', 'users', 'tipoOcorrencias', 'turnos', 'medidas'));
@@ -98,7 +98,6 @@ class OcorrenciasController extends AppController
         $alunos = $this->Ocorrencias->Alunos->find('list', ['limit' => 200]);
         $users = $this->Ocorrencias->Users->find('list', ['limit' => 200]);
         $tipoOcorrencias = $this->Ocorrencias->TipoOcorrencias->find('list', ['limit' => 200]);
-        $gravidades = $this->Ocorrencias->Gravidades->find('list', ['limit' => 200]);
         $turnos = $this->Ocorrencias->Turnos->find('list', ['limit' => 200]);
         $medidas = $this->Ocorrencias->Medidas->find('list', ['limit' => 200]);
         $this->set(compact('ocorrencia', 'alunos', 'users', 'tipoOcorrencias', 'turnos', 'medidas'));

@@ -49,8 +49,9 @@ $cakeDescription = 'Ocorre';
         </div>
     </div>
 
-
-    <?= $this->Html->script(['jquery-3.4.1.min','popper.min', 'bootstrap.min', 'dashboard', 'chart']) ?>
+    <?= $this->Html->script(['chart']) ?>
+    <?= $this->Html->script(['jquery-3.4.1.min','popper.min', 'bootstrap.min', 'dashboard', 'estatistica']) ?>
+    
 </body>
 
 </html>

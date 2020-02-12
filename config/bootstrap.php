@@ -203,3 +203,4 @@ Type::build('timestamp')
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 
 \Cake\I18n\FrozenTime::setToStringFormat('dd/MM/yyyy HH:mm:ss');
+

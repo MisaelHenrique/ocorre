@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property string $matricula
  * @property string $nome
  * @property int $sexo
- * @property \Cake\I18n\FrozenDate $data_nasc
+ * @property \Cake\I18n\FrozenDate|null $data_nasc
  * @property int $curso_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
