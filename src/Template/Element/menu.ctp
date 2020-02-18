@@ -97,18 +97,6 @@
             );?>
         </li>
         <li><?= $this->Html->link(
-                '<i class="fas fa-check"></i> Gravidades', 
-                [
-                    'controller' => 'Gravidades', 
-                    'action' => 'index' 
-                ],
-                [
-                    'escape' => false
-                ]
-            
-            );?>
-        </li>
-        <li><?= $this->Html->link(
                 '<i class="fas fa-sign-out-alt"></i> Sair', 
                 [
                     'controller' => 'Users', 

@@ -51,7 +51,7 @@ $cakeDescription = 'Ocorre';
 
     <?= $this->Html->script(['chart']) ?>
     <?= $this->Html->script(['jquery-3.4.1.min','popper.min', 'bootstrap.min', 'dashboard', 'estatistica']) ?>
-    
+    <?= $this->element('footer') ?>
 </body>
 
 </html>

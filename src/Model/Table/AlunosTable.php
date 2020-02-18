@@ -46,7 +46,7 @@ class AlunosTable extends Table
             'foreignKey' => 'curso_id',
             'joinType' => 'INNER',
             'sort' => [
-                'Cursos.curso' => 'asc'
+                'Cursos.curso' => 'ASC'
             ]
         ]);
         $this->hasMany('Ocorrencias', [

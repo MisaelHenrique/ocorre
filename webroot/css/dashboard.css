@@ -104,3 +104,25 @@ body {
 .edit a {
     color: #000 !important;
 }
+
+.rodape {
+    background-color: #19222d;
+    color: #FFF;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+}
+
+.rodape ul li a.link-rodape {
+    color: #FFF !important;
+}
+
+.rodape ul li a.link-rodape:hover {
+    color: #adaeaf !important;
+    text-decoration: none;
+}
+
+.link-ocorre a {
+    color: #FFF !important;
+    font-size: 25px;
+    text-decoration: none;
+}

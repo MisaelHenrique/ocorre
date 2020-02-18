@@ -33,33 +33,3 @@
 <?= $this->Form->button(_('Cadastrar'), ['class'=>'btn btn-success']) ?>
 
 <?= $this->Form->end() ?>
-
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\TipoOcorrencia $tipoOcorrencia
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Tipo Ocorrencias'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Gravidades'), ['controller' => 'Gravidades', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Gravidade'), ['controller' => 'Gravidades', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Ocorrencias'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Ocorrencia'), ['controller' => 'Ocorrencias', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="tipoOcorrencias form large-9 medium-8 columns content">
-    <?= $this->Form->create($tipoOcorrencia) ?>
-    <fieldset>
-        <legend><?= __('Add Tipo Ocorrencia') ?></legend>
-        <?php
-            echo $this->Form->control('tipo_ocorrencia');
-            echo $this->Form->control('gravidade_id', ['options' => $gravidades]);
-            echo $this->Form->control('descricao');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>

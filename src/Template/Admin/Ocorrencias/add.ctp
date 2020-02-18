@@ -12,19 +12,19 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Nome do Aluno</label>
-        <?= $this->Form->control('aluno_id', ['class' =>'form-control','placeholder'=>'Nome Completo','label' => false]) ?>
+        <?= $this->Form->control('aluno_id', ['class' =>'form-control','empty' => 'Selecione','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Tipo de Ocorrencia</label>
-        <?= $this->Form->control('tipo_ocorrencia_id', ['class' =>'form-control','placeholder'=>'Tipo de Ocorrencia','label' => false]) ?>
+        <?= $this->Form->control('tipo_ocorrencia_id', ['class' =>'form-control','empty' => 'Selecione','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Medida Aplicada</label>
-        <?= $this->Form->control('medida_id', ['class' =>'form-control','placeholder'=>'Medida Aplicada','label' => false]) ?>
+        <?= $this->Form->control('medida_id', ['class' =>'form-control','empty' => 'Selecione','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Turno Ocorrido</label>
-        <?= $this->Form->control('turno_id', ['class' =>'form-control','placeholder'=>'Turno Ocorrido','label' => false]) ?>
+        <?= $this->Form->control('turno_id', ['class' =>'form-control','empty' => 'Selecione','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Data do Ocorrido</label>

@@ -17,9 +17,10 @@ $cakeDescription = 'Ocorre';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
@@ -32,10 +33,13 @@ $cakeDescription = 'Ocorre';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
-<body class="text-center">
-    <?= $this->Flash->render() ?>
+
+<body  class="text-center">
+    
+        <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
-        
+
     <?= $this->Html->script(['jquery-3.4.1.min', 'bootstrap.min']) ?>
 </body>
+
 </html>

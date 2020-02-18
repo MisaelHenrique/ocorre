@@ -3,6 +3,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\ORM\Query;
 
 /**
  * Alunos Controller
@@ -56,10 +57,12 @@ class AlunosController extends AppController
      */
     public function add()
     {
+        
         $aluno = $this->Alunos->newEntity();
+        
         if ($this->request->is('post')) {
             $aluno = $this->Alunos->patchEntity($aluno, $this->request->getData());
-
+           
             if ($this->Alunos->save($aluno)) {
                 $this->Flash->success(__('Aluno adicionado com sucesso.'));
 

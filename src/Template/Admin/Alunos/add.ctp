@@ -1,3 +1,4 @@
+
 <div class="d-flex">
     <div class="mr-auto p-2">
         <h2 class="display-4 titulo">Cadastrar Aluno</h2>
@@ -37,7 +38,7 @@
 
     <div class="form-group col-md-6">
         <label><span class="text-danger">*</span> Curso</label>
-        <?= $this->Form->control('curso_id', ['class' =>'form-control','placeholder'=>'Curso','label' => false]) ?>
+        <?= $this->Form->control('curso_id', ['class' =>'form-control','empty' => 'Selecione','label' => false]) ?>
     </div>
 </div>
 </div>
@@ -47,36 +48,3 @@
 <?= $this->Form->button(_('Cadastrar'), ['class'=>'btn btn-success']) ?>
 
 <?= $this->Form->end() ?>
-
-
-<?php
-/*/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Aluno $aluno
- */
-?>
-/*<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Alunos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Cursos'), ['controller' => 'Cursos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Curso'), ['controller' => 'Cursos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Ocorrencias'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Ocorrencia'), ['controller' => 'Ocorrencias', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="alunos form large-9 medium-8 columns content">
-    <?= $this->Form->create($aluno) ?>
-    <fieldset>
-        <legend><?= __('Add Aluno') ?></legend>
-        <?php
-            echo $this->Form->control('matricula');
-            echo $this->Form->control('nome');
-            echo $this->Form->control('sexo');
-            echo $this->Form->control('data_nasc');
-            echo $this->Form->control('curso_id', ['options' => $cursos]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>*/

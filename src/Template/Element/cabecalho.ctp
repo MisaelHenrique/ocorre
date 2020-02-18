@@ -2,7 +2,20 @@
     <a class="sidebar-toggle text-light mr-3">
         <span class="navbar-toggler-icon"></span>
     </a>
-    <a class="navbar-brand" href="#">OCORRE</a>
+    <!--<a class="navbar-brand" href="#">OCORRE</a>-->
+    <div class="link-ocorre">
+        <?= $this->Html->link(
+                'OCORRE', 
+                [
+                    'controller' => 'Welcomes', 
+                    'action' => 'index' 
+                ],
+                [
+                    'escape' => false
+                ]
+            
+            );?>
+    </div>
 
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
@@ -22,7 +35,7 @@
                         'controller' => 'Users', 
                         'action' => 'perfil'
                     ], ['class' => 'dropdown-item', 'escape' => false])?>
-                    
+
                     <?= $this->Html->link('<i class="fas fa-sign-out-alt"></i> Sair', [
                         'controller' => 'Users', 
                         'action' => 'logout'
