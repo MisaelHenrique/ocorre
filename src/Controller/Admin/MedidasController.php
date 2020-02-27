@@ -19,6 +19,13 @@ class MedidasController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'limit' => 20,
+            'conditions' => ['and' => [
+                'Medidas.medida like' => '%' . $this->request->query('search') . '%'
+            ]],
+            'order' => ['Medidas.medida']  
+        ];
         $medidas = $this->paginate($this->Medidas);
 
         $this->set(compact('medidas'));

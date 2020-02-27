@@ -22,9 +22,13 @@ class AlunosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'limit' => 40,
+            'limit' => 20,
             'contain' => ['Cursos'],
-            'order' => ['Alunos.nome']
+            'conditions' => ['and' => [
+                'Alunos.nome like' => '%' . $this->request->query('search') . '%'
+            ]],
+
+            'order' => ['Alunos.nome' => 'ASC']
         ];
         $alunos = $this->paginate($this->Alunos);
 
@@ -113,7 +117,7 @@ class AlunosController extends AppController
         if ($this->Alunos->delete($aluno)) {
             $this->Flash->success(__('Aluno deletado com sucesso.'));
         } else {
-            $this->Flash->error(__('ERRO: Aluno não editado com sucesso.'));
+            $this->Flash->danger(__('ERRO: Aluno não editado com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);

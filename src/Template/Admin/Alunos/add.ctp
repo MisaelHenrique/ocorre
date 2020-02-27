@@ -41,7 +41,6 @@
         <?= $this->Form->control('curso_id', ['class' =>'form-control','empty' => 'Selecione','label' => false]) ?>
     </div>
 </div>
-</div>
 <p>
     <span class="text-danger">* </span>Campo obrigatório
 </p>

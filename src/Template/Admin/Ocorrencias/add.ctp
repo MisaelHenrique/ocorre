@@ -19,7 +19,7 @@
         <?= $this->Form->control('tipo_ocorrencia_id', ['class' =>'form-control','empty' => 'Selecione','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">
-        <label><span class="text-danger">*</span> Medida Aplicada</label>
+        <label><span class="text-danger"></span> Medida Aplicada</label>
         <?= $this->Form->control('medida_id', ['class' =>'form-control','empty' => 'Selecione','label' => false]) ?>
     </div>
     <div class="form-group col-md-6">

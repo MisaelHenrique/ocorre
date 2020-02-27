@@ -65,4 +65,15 @@ class GravidadesTable extends Table
 
         return $validator;
     }
+
+    public function getEstatistica($gravidade){
+
+        $query = $this->find()
+        ->select(['id'])
+        ->where([
+            'Gravidades.gravidade' => $gravidade
+        ]);
+    return $query->first();
+
+    }
 }

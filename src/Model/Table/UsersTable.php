@@ -109,6 +109,7 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email'], 'Este e-mail já está cadastrado'));
+        $rules->add($rules->isUnique(['matricula'], 'Esta matricula já está cadastrada'));
         $rules->add($rules->isUnique(['username'], 'Este usuário já está cadastrado'));
 
         return $rules;

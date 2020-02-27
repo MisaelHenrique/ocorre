@@ -19,6 +19,13 @@ class CursosController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'limit' => 20,
+            'conditions' => ['and' => [
+                'Cursos.nome like' => '%' . $this->request->query('search') . '%'
+            ]],
+            'order' => ['Cursos.nome']  
+        ];
         $cursos = $this->paginate($this->Cursos);
 
         $this->set(compact('cursos'));

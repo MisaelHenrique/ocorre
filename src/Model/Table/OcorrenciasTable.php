@@ -48,7 +48,7 @@ class OcorrenciasTable extends Table
         $this->belongsTo('Alunos', [
             'foreignKey' => 'aluno_id',
             'joinType' => 'INNER',
-            'sort' => ['Alunos.nome' => 'asc']
+            'order' => ['Alunos.nome']
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
@@ -84,6 +84,11 @@ class OcorrenciasTable extends Table
             ->scalar('descricao')
             ->requirePresence('descricao', 'create')
             ->notEmptyString('descricao');
+        
+        $validator
+            ->scalar('aluno')
+            ->requirePresence('aluno', 'create')
+            ->notEmptyString('aluno');
 
         $validator
             //->dateTime('data')
@@ -105,7 +110,6 @@ class OcorrenciasTable extends Table
         $rules->add($rules->existsIn(['aluno_id'], 'Alunos'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['tipo_ocorrencia_id'], 'TipoOcorrencias'));
-        $rules->add($rules->existsIn(['gravidade_id'], 'Gravidades'));
         $rules->add($rules->existsIn(['turno_id'], 'Turnos'));
         $rules->add($rules->existsIn(['medida_id'], 'Medidas'));
 

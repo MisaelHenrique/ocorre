@@ -7,12 +7,24 @@
     </div>
 </div>
 
+<?= $this->Form->create(null, ['type' => 'get']); ?>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <?= $this->Form->input('search',['class' => 'form-control', 'label' => false,'placeholder' => 'Digite aqui o curso','value' => $this->request->query('search')]);?>
+
+    </div>
+    <div class="form-group col-md-6">
+        <?=$this->Form->button(_('Pesquisar'), ['class'=>'btn btn-success']);?>
+    </div>
+</div>
+<?=$this->Form->end();?>
+<hr>
+
 <?= $this->Flash->render() ?>
 <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Curso</th>
                 <th class="text-center">Ações</th>
             </tr>
@@ -20,8 +32,6 @@
         <tbody>
             <?php foreach ($cursos as $curso): ?>
             <tr>
-            
-                <td><?= $this->Number->format($curso->id) ?></td>
                 <td><?= h($curso->nome) ?></td>
                 <td>
                     <span class="d-none d-md-block">
@@ -29,7 +39,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'Cursos', 'action' => 'edit', $curso->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o curso # {0}?', $curso->id)]) ?>
+                        <!--<?= $this->Form->postLink(__('Apagar'), ['controller' => 'Cursos', 'action' => 'delete', $curso->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o curso # {0}?', $curso->id)]) ?>-->
                     </span>
 
                     <div class="dropdown d-block d-md-none">

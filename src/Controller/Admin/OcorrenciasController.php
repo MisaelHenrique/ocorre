@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\Mailer\Email;
 
 /**
  * Ocorrencias Controller
@@ -21,7 +22,12 @@ class OcorrenciasController extends AppController
         $this->paginate = [
             'limit' => 40,
             'contain' => ['Alunos', 'Users', 'TipoOcorrencias', 'TipoOcorrencias.Gravidades', 'Turnos', 'Medidas'],
-            'order' => ['Ocorrencias.data DESC']        ];
+            'conditions' => ['and' => [
+                'Ocorrencias.data like' => '%' . $this->request->query('search') . '%'
+            ]],
+
+            'order' => ['Ocorrencias.data DESC']      
+          ];
         
         $ocorrencias = $this->paginate($this->Ocorrencias->find('all', [
 
@@ -39,6 +45,14 @@ class OcorrenciasController extends AppController
      */
     public function view($id = null)
     {
+
+        /*$email = new Email('default');
+        $email->from(['ifsports.ifmspp@gmail.com' => 'My Site'])
+            ->to('denis.lima@ifms.edu.br')
+            ->subject('About')
+            ->send('My message');*/
+
+
         $ocorrencia = $this->Ocorrencias->get($id, [
             'contain' => ['Alunos', 'Alunos.Cursos', 'Users', 'TipoOcorrencias', 'TipoOcorrencias.Gravidades', 'Turnos', 'Medidas'],
         ]);

@@ -3,8 +3,9 @@
 
     <div class="form-row">
         <div class="form-group col-md-9">
+
+            <canvas id="myChart"></canvas>
             
-        <canvas id="myChart"></canvas>
-        
-        </div>    
+        </div>
     </div>
+

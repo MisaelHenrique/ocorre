@@ -7,12 +7,24 @@
     </div>
 </div>
 
+<?= $this->Form->create(null, ['type' => 'get']); ?>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <?= $this->Form->input('search',['class' => 'form-control', 'label' => false,'placeholder' => 'Digite aqui a medida','value' => $this->request->query('search')]);?>
+
+    </div>
+    <div class="form-group col-md-6">
+        <?=$this->Form->button(_('Pesquisar'), ['class'=>'btn btn-success']);?>
+    </div>
+</div>
+<?=$this->Form->end();?>
+<hr>
+
 <?= $this->Flash->render() ?>
 <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Medidas</th>
                 <th class="d-none d-sm-table-cell">Descrição</th>
                 <th class="text-center">Ações</th>
@@ -21,7 +33,6 @@
         <tbody>
             <?php foreach ($medidas as $medida): ?>
             <tr>
-                <td><?= $this->Number->format($medida->id) ?></td>
                 <td><?= h($medida->medida) ?></td>
                 <td class="d-none d-sm-table-cell">
                     <?= h($medida->descricao) ?>
@@ -32,7 +43,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'Medidas', 'action' => 'edit', $medida->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Medidas', 'action' => 'delete', $medida->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar a medida # {0}?', $medida->id)]) ?>
+                       <!-- <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Medidas', 'action' => 'delete', $medida->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar a medida # {0}?', $medida->id)]) ?>-->
                     </span>
 
                     <div class="dropdown d-block d-md-none">

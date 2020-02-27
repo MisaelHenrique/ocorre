@@ -19,9 +19,14 @@ class TipoOcorrenciasController extends AppController
      */
     public function index()
     {
+
         $this->paginate = [
             'limit' => 40,
             'contain' => ['Gravidades'],
+            'conditions' => ['and' => [
+                'TipoOcorrencias.tipo_ocorrencia like' => '%' . $this->request->query('search') . '%'
+            ]],
+            'order' => ['TipoOcorrencias.tipo_ocorrencia'] 
         ];
         $tipoOcorrencias = $this->paginate($this->TipoOcorrencias);
 

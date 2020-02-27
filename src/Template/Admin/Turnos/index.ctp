@@ -7,12 +7,25 @@
     </div>
 </div>
 
+<?= $this->Form->create(null, ['type' => 'get']); ?>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <?= $this->Form->input('search',['class' => 'form-control', 'label' => false,'placeholder' => 'Digite aqui o turno','value' => $this->request->query('search')]);?>
+
+    </div>
+    <div class="form-group col-md-6">
+        <?=$this->Form->button(_('Pesquisar'), ['class'=>'btn btn-success']);?>
+    </div>
+</div>
+<?=$this->Form->end();?>
+<hr>
+
 <?= $this->Flash->render() ?>
 <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
+            
                 <th>Turno</th>
                 <th class="text-center">Ações</th>
             </tr>
@@ -20,7 +33,6 @@
         <tbody>
             <?php foreach ($turnos as $turno): ?>
             <tr>
-                <td><?= $this->Number->format($turno->id) ?></td>
                 <td><?= h($turno->turno) ?></td>
             </td>
                 <td>
@@ -29,7 +41,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'Turnos', 'action' => 'edit', $turno->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Turnos', 'action' => 'delete', $turno->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o turno # {0}?', $turno->id)]) ?>
+                       <!-- <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Turnos', 'action' => 'delete', $turno->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o turno # {0}?', $turno->id)]) ?>-->
                     </span>
 
                     <div class="dropdown d-block d-md-none">

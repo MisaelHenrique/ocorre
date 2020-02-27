@@ -19,6 +19,13 @@ class TurnosController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'limit' => 20,
+            'conditions' => ['and' => [
+                'Turnos.turno like' => '%' . $this->request->query('search') . '%'
+            ]],
+            'order' => ['Turnos.turno']  
+        ];
         $turnos = $this->paginate($this->Turnos);
 
         $this->set(compact('turnos'));

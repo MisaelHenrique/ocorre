@@ -7,12 +7,24 @@
     </div>
 </div>
 
+<?= $this->Form->create(null, ['type' => 'get']); ?>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <?= $this->Form->input('search',['class' => 'form-control', 'label' => false,'placeholder' => 'Digite aqui sua pesquisa','value' => $this->request->query('search')]);?>
+
+    </div>
+    <div class="form-group col-md-6">
+        <?=$this->Form->button(_('Pesquisar'), ['class'=>'btn btn-success']);?>
+    </div>
+</div>
+<?=$this->Form->end();?>
+<hr>
+
 <?= $this->Flash->render() ?>
 <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nome Aluno</th>
                 <th class="d-none d-sm-table-cell">Data</th>
                 <th>Tipo da ocorrência</th>
@@ -23,7 +35,6 @@
         <tbody>
             <?php foreach ($ocorrencias as $ocorrencia): ?>
             <tr>
-                <td><?= $this->Number->format($ocorrencia->id) ?></td>
                 <td>
                     <?= $ocorrencia->has('aluno') ? $this->Html->link($ocorrencia->aluno->nome, ['controller' => 'Alunos', 'action' => 'view', $ocorrencia->aluno->id]) : '' ?>
                 </td>
@@ -36,7 +47,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencia->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>
+                        <!--<?= $this->Form->postLink(__('Apagar'), ['controller' => 'Ocorrencias', 'action' => 'delete', $ocorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar a ocorrencia # {0}?', $ocorrencia->id)]) ?>-->
                     </span>
 
                     <div class="dropdown d-block d-md-none">

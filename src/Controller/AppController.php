@@ -78,6 +78,7 @@ class AppController extends Controller
                 $this->viewBuilder()->setLayout('login') ;
             }else{
                 $user = TableRegistry::get('Users');
+                $this->loadComponent('Auth');
                 $perfilUser = $user->getUserDados($this->Auth->user('id'));
                 
                 $this->set(compact('perfilUser'));

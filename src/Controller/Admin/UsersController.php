@@ -34,7 +34,11 @@ public function beforeFilter(Event $event)
     public function index()
     {
         $this->paginate = [
-            'limit' => 40
+            'limit' => 20,
+            'conditions' => ['and' => [
+                'Users.name like' => '%' . $this->request->query('search') . '%',
+            ]],
+            'order' => ['Users.name']  
         ];
 
         $users = $this->paginate($this->Users);

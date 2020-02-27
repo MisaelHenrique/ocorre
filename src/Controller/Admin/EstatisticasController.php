@@ -8,6 +8,13 @@ class EstatisticasController extends AppController{
 
     public function index(){
 
+        $this->loadModel('Gravidades');
+        $gravidades = $this->Gravidades->find('list', [
+            'keyField' => 'gravidades',
+            'valueField' => 'gravidade',
+            'fields'=>[
+                'gravidade' => ''            ]
+        ]);
 
     }
 

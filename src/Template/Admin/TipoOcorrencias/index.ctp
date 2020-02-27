@@ -7,12 +7,24 @@
     </div>
 </div>
 
+<?= $this->Form->create(null, ['type' => 'get']); ?>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <?= $this->Form->input('search',['class' => 'form-control', 'label' => false,'placeholder' => 'Digite aqui o tipo da ocorrência','value' => $this->request->query('search')]);?>
+
+    </div>
+    <div class="form-group col-md-6">
+        <?=$this->Form->button(_('Pesquisar'), ['class'=>'btn btn-success']);?>
+    </div>
+</div>
+<?=$this->Form->end();?>
+<hr>
+
 <?= $this->Flash->render() ?>
 <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Tipo de Ocorrencia</th>
                 <th>Gravidade</th>
                 <th class="d-none d-sm-table-cell">Descrição</th>
@@ -22,9 +34,8 @@
         <tbody>
             <?php foreach ($tipoOcorrencias as $tipoOcorrencia): ?>
             <tr>
-                <td><?= $this->Number->format($tipoOcorrencia->id) ?></td>
                 <td><?= h($tipoOcorrencia->tipo_ocorrencia) ?></td>
-                <td><?= $tipoOcorrencia->has('gravidade') ? $this->Html->link($tipoOcorrencia->gravidade->gravidade, ['controller' => 'Gravidades', 'action' => 'view', $tipoOcorrencia->gravidade->id]) : '' ?></td>
+                <td><?= $tipoOcorrencia->gravidade->gravidade ?></td>
                 <td class="d-none d-sm-table-cell">
                     <?= h($tipoOcorrencia->descricao) ?>
                 </td>
@@ -34,7 +45,7 @@
 
                         <?= $this->Html->link(__('Editar'), ['controller' => 'TipoOcorrencias', 'action' => 'edit', $tipoOcorrencia->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
 
-                        <?= $this->Form->postLink(__('Apagar'), ['controller' => 'TipoOcorrencias', 'action' => 'delete', $tipoOcorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o tipo de ocorrencia # {0}?', $tipoOcorrencia->id)]) ?>
+                        <!--<?= $this->Form->postLink(__('Apagar'), ['controller' => 'TipoOcorrencias', 'action' => 'delete', $tipoOcorrencia->id], ['class' =>'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja apagar o tipo de ocorrencia # {0}?', $tipoOcorrencia->id)]) ?>-->
                     </span>
 
                     <div class="dropdown d-block d-md-none">

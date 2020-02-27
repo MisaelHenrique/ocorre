@@ -58,3 +58,4 @@
     <dd class="col-sm-9"><?= h($ocorrencia->descricao) ?></dd>
 
 </dl>
+<a href="javascript:print()" class="btn btn-outline-info btn-sm" >Imprimir</a>

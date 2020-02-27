@@ -29,7 +29,7 @@ class UserMailer extends Mailer
     public function recuperarSenha($user){
 
         $this->setTo($user->email)
-        ->setProfile('envemail')
+        ->setProfile('default')
         ->setEmailFormat('html')
         ->setTemplate('recuperar_senha')
         ->setLayout('user')
