@@ -84,4 +84,15 @@ class TipoOcorrenciasTable extends Table
 
         return $rules;
     }
+
+    public function getTipoEstatistica($Tipogravidade){
+
+        $query = $this->find()
+        ->select(['gravidade_id'])
+        ->where([
+            'Gravidades.gravidade' => $Tipogravidade
+        ]);
+    return $query->first();
+
+    }
 }

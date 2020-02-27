@@ -113,39 +113,7 @@ public function beforeFilter(Event $event)
         $this->set(compact('user'));
     }
 
-    public function alterarFotoUsuario($id = null)//com redimensionamento de imagem
-    {
-        $user = $this->Users->get($id);
-        $imagemAntiga = $user->imagem;
 
-        if($this->request->is(['patch', 'post', 'put'])){
-            $user = $this->Users->newEntity();
-            $user->imagem = $this->Users->slugUploadImgRed($this->request->getData()['imagem']['name']);
-            $user->id = $id;
-
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if($this->Users->save($user)){
-                $destino = WWW_ROOT. "files" . DS . "user" . DS . $id . DS;
-                $imgUpload = $this->request->getData()['imagem'];
-                $imgUpload['name'] = $user->imagem;
-                
-                if($this->Users->uploadImgRed($imgUpload, $destino, 150, 150)){
-                    $this->Users->deleteFile($destino, $imagemAntiga, $user->imagem);
-
-                    $this->Flash->success(__('Foto editada com sucesso'));
-                    return $this->redirect(['controller' => 'Users', 'action' => 'view', $id]);
-                }else{
-                    $user->imagem = $imagemAntiga;
-                    $this->Users->save($user);
-                    $this->Flash->danger(__('Erro: Foto não foi editada com sucesso. Erro ao realizar o upload'));
-                }
-            }else{
-                $this->Flash->danger(__('Erro: Foto não foi editada com sucesso.'));
-            }
-        }  
-
-        $this->set(compact('user'));
-    }
     use MailerAwareTrait;
     public function recuperarSenha()
     {
@@ -227,43 +195,6 @@ public function beforeFilter(Event $event)
         }
         $this->set(compact('user'));
     }
-
-    public function alterarFotoPerfil()
-    {
-        $user_id = $this->Auth->user('id');
-        $user = $this->Users->get($user_id);
-        $imagemAntiga = $user->imagem;
-
-        if($this->request->is(['patch', 'post', 'put'])){
-            $user = $this->Users->newEntity();
-            $user->imagem = $this->Users->slugUploadImgRed($this->request->getData()['imagem']['name']);
-            $user->id = $user_id;
-
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if($this->Users->save($user)){
-                $destino = WWW_ROOT. "files" . DS . "user" . DS . $user_id . DS;
-                $imgUpload = $this->request->getData()['imagem'];
-                $imgUpload['name'] = $user->imagem;
-                
-                if($this->Users->uploadImgRed($imgUpload, $destino, 150, 150)){
-                    $this->Users->deleteFile($destino, $imagemAntiga, $user->imagem);
-
-                    $this->Flash->success(__('Foto editada com sucesso'));
-                    return $this->redirect(['controller' => 'Users', 'action' => 'perfil']);
-                }else{
-                    $user->imagem = $imagemAntiga;
-                    $this->Users->save($user);
-                    $this->Flash->danger(__('Erro: Foto não foi editada com sucesso. Erro ao realizar o upload'));
-                }
-            }else{
-                $this->Flash->danger(__('Erro: Foto não foi editada com sucesso.'));
-            }
-        }    
-
-        $this->set(compact('user'));
-    }
-
-
 
 
     /**

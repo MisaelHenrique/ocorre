@@ -8,7 +8,7 @@ var chart = new Chart(ctx, {
 
 
         datasets: [{
-            label: 'Gráfico',
+            label: 'Ocorrencias',
             backgroundColor: ['lightgray', 'green', 'yellow', 'orange', 'red'],
             borderColor: 'rgb(255, 99, 132)',
             data: [10, 20, 30, 40, 50]

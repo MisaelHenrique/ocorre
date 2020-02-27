@@ -55,7 +55,7 @@ class GravidadesController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('ERRO: Gravidade não adicionada com sucesso.'));
+            $this->Flash->danger(__('ERRO: Gravidade não adicionada com sucesso.'));
         }
         $this->set(compact('gravidade'));
     }
@@ -79,7 +79,7 @@ class GravidadesController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('ERRO: Gravidade não editado com sucesso.'));
+            $this->Flash->danger(__('ERRO: Gravidade não editado com sucesso.'));
         }
         $this->set(compact('gravidade'));
     }
@@ -98,7 +98,7 @@ class GravidadesController extends AppController
         if ($this->Gravidades->delete($gravidade)) {
             $this->Flash->success(__('Gravidade deletada com sucesso.'));
         } else {
-            $this->Flash->error(__('ERRO: Gravidade não deletada com sucesso.'));
+            $this->Flash->danger(__('ERRO: Gravidade não deletada com sucesso.'));
         }
 
         return $this->redirect(['action' => 'index']);
